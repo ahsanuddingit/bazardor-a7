@@ -1,6 +1,10 @@
 import Image from "next/image";
+import { connection } from "next/server";
 
-const Banner = () => {
+const Banner = async () => {
+  // Next.js-কে বলে দেওয়া যে এটি রিকোয়েস্ট টাইমে রেন্ডার হবে (Static prerender এড়াতে)
+  await connection();
+
   const today = new Date();
 
   const formattedDate = today.toLocaleDateString("bn-BD", {

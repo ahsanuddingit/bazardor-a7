@@ -2,8 +2,12 @@ import Image from "next/image";
 import Buttons from "../user-session/Buttons";
 import NavLinks from "./NavLinks";
 import Link from "next/link";
+import { connection } from "next/server"; // এটি নেক্সট জেএস থেকে ইমপোর্ট করুন
 
-const Navbar = ({ marquee }: { marquee?: React.ReactNode }) => {
+const Navbar = async ({ marquee }: { marquee?: React.ReactNode }) => {
+  // ডায়নামিক রেন্ডারিং নিশ্চিত করার জন্য এটি কল করতে হবে
+  await connection();
+
   const date = new Date().toLocaleDateString("bn-BD", {
     dateStyle: "full",
     timeZone: "Asia/Dhaka",

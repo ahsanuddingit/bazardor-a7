@@ -5,6 +5,7 @@ import Navbar from "@/components/shared/Navbar";
 import Marquee from "@/components/home/Marquee";
 import Footer from "@/components/shared/Footer";
 import { Toaster } from "react-hot-toast";
+import { Suspense } from "react";
 
 const notoSerifBangla = Noto_Serif_Bengali({
   subsets: ["latin", "bengali"],
@@ -22,7 +23,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-theme="light"
       className={`${notoSerifBangla.className} h-full antialiased`}
     >
-      <body className=" min-h-full flex flex-col ">
+      <body className="min-h-full flex flex-col">
         <Toaster
           position="top-center"
           reverseOrder={false}
@@ -33,10 +34,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             },
           }}
         />
-        <Navbar marquee={<Marquee />} />
+        
+        {/* Navbar ও Marquee-কে Suspense এর ভেতর রাখা হলো */}
+        <Suspense fallback={<div className="h-16 bg-white border-b border-gray-200" />}>
+          <Navbar marquee={<Marquee />} />
+        </Suspense>
 
         {children}
-        <Footer></Footer>
+        
+        <Footer />
       </body>
     </html>
   );
