@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth"; // আপনার প্রজেক্টের auth কনফিগারেশন অনুযায়ী ইমপোর্ট পাথ ঠিক করে নেবেন
 
 interface ParamsProps {
   params: Promise<{
@@ -15,6 +17,16 @@ const unitBn: Record<string, string> = {
 };
 
 const DetailsPage = async ({ params }: ParamsProps) => {
+  // ১. প্রথমে চেক করা হচ্ছে ব্যবহারকারী সাইন ইন করা আছে কিনা
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  // যদি সাইন ইন করা না থাকে, সরাসরি সাইন-ইন পেজে রিডাইরেক্ট করে দেওয়া হবে
+  if (!session) {
+    redirect("/sign-in");
+  }
+
   const { detailsId } = await params;
   const res = await fetch(
     `https://openapi.programming-hero.com/api/bazardor/products/${detailsId}`
@@ -185,7 +197,7 @@ const DetailsPage = async ({ params }: ParamsProps) => {
                           <p className="text-xs text-gray-500">{market.division}</p>
                         </div>
                         <div className="text-right">
-                          <p className="text-xs text-gray-500">গড় দাম</p>
+                          <p className="text-xs text-gray-500">গড় দাম</p>
                           <p className="font-semibold text-gray-900">
                             {average.toLocaleString("bn-BD", {
                               maximumFractionDigits: 1,

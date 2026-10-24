@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BazarDor (বাজার দর)
 
-## Getting Started
+**BazarDor** is a modern, responsive web application designed to help users conveniently monitor daily market prices in Bangladesh. Users can view up-to-date prices, track minimum and maximum rates, and analyze market comparisons for essential daily commodities such as rice, lentils, oil, vegetables, fish, meat, eggs, and spices—all in one place.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Technologies Used
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This project is built using a modern, performant, and scalable tech stack:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* **Framework:** Next.js (App Router)
+* **Library:** React.js
+* **Styling:** Tailwind CSS, DaisyUI
+* **Authentication:** Better Auth (Email/Password, Google & GitHub OAuth)
+* **Language:** TypeScript & JavaScript
+* **Localization & Formatting:** Bangla locale (`bn-BD`) for numbers, dates, and currency formatting
+* **Notifications:** React Hot Toast
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## ✨ Key Features
 
-To learn more about Next.js, take a look at the following resources:
+1. **Real-Time Price Tracking & Trends:**  
+   Easily track daily price changes for essential products with clear visual indicators and percentage (%) increases or decreases compared to previous days.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Market-Wise Price Comparison & Analytics:**  
+   Detailed breakdown for each product, showing minimum, maximum, and average prices across various local markets (e.g., Karwan Bazar, Mohakhali Market, etc.).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Secure User Authentication & Profile Management:**  
+   Protected authentication flows using Better Auth. Users can sign in via email/password or social providers (Google, GitHub), and manage their user profile information.
 
-## Deploy on Vercel
+4. **Category & Dynamic Search Filtering:**  
+   Organized product categories (e.g., Vegetables, Fish, Meat, Spices) allow users to effortlessly browse and filter specific daily essentials.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5. **Fully Responsive & Modern Bengali UI:**  
+   A clean, user-friendly interface optimized for mobile, tablet, and desktop screens with seamless localized Bangla typography and formatting.
