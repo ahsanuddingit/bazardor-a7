@@ -44,6 +44,8 @@ const ProfilePage = () => {
 
       setNewName("");
       setMessage("আপনার নাম সফলভাবে পরিবর্তন হয়েছে।");
+      toast.success("নাম সফলভাবে আপডেট হয়েছে");
+      router.refresh();
     } catch {
       setMessage("একটি সমস্যা হয়েছে। আবার চেষ্টা করুন।");
     } finally {
@@ -55,7 +57,7 @@ const ProfilePage = () => {
     await signOut({
       fetchOptions: {
         onSuccess: () => {
-          toast.success("সাইন আউট সফল হয়েছে");
+          toast.success("সাইন আউট সফল হয়েছে");
           router.push("/sign-in");
         },
       },
@@ -63,57 +65,57 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="bg-[#e1e8e163]">
-      <div className="min-h-screen bg-[#e1e8e163] px-4 py-8 sm:px-6 sm:py-12">
-        <div className="mx-auto max-w-5xl">
-          <div className="mb-6 sm:mb-8">
-            <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
-              আমার প্রোফাইল
-            </h1>
-            <p className="mt-2 text-sm text-gray-600 sm:text-base">
-              আপনার অ্যাকাউন্টের তথ্য এখানে দেখুন।
-            </p>
-          </div>
+    <div className="bg-[#f3f7f3] min-h-screen py-8 sm:py-12 px-4 sm:px-6">
+      <div className="mx-auto max-w-4xl space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+            আমার প্রোফাইল
+          </h1>
+          <p className="mt-1 text-sm text-gray-600 sm:text-base">
+            আপনার অ্যাকাউন্টের তথ্য এখানে দেখুন এবং পরিচালনা করুন।
+          </p>
+        </div>
 
-          <div className="rounded-2xl border border-gray-200 bg-white p-5  sm:p-8">
-            <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex min-w-0 items-center gap-4">
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#05893e] text-2xl font-semibold text-white sm:h-16 sm:w-16">
-                  {user?.name?.charAt(0).toUpperCase() || "U"}
-                </div>
-
-                <div className="min-w-0">
-                  <h2 className="truncate text-lg font-semibold text-gray-900 sm:text-xl">
-                    {user?.name}
-                  </h2>
-                  <p className="mt-1 break-all text-sm text-gray-500 sm:text-base">
-                    {user?.email}
-                  </p>
-                </div>
+        {/* User Info Card */}
+        <div className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-8 shadow-sm">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-4 min-w-0">
+              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-[#05893e] text-2xl font-bold text-white">
+                {user?.name?.charAt(0).toUpperCase() || "U"}
               </div>
 
-              <button
-                onClick={handleSignOut}
-                className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-red-500 px-4 py-3 text-sm font-medium text-red-600 transition-colors hover:bg-red-50 sm:w-auto sm:shrink-0"
-              >
-                <span aria-hidden="true">↩</span>
-                সাইন আউট
-              </button>
+              <div className="min-w-0">
+                <h2 className="truncate text-xl font-bold text-gray-900">
+                  {user?.name}
+                </h2>
+                <p className="mt-1 break-all text-sm text-gray-500">
+                  {user?.email}
+                </p>
+              </div>
             </div>
+
+            <button
+              onClick={handleSignOut}
+              className="cursor-pointer flex items-center justify-center gap-2 rounded-xl border border-red-200 bg-red-50/50 px-5 py-3 text-sm font-semibold text-red-600 transition hover:bg-red-100 sm:w-auto"
+            >
+              <span>সাইন আউট</span>
+            </button>
           </div>
+        </div>
 
-          {/* Update Name Section */}
-          <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-5 sm:p-8">
-            <h2 className="text-lg font-bold text-gray-900 sm:text-xl">
-              নাম পরিবর্তন করুন
-            </h2>
+        {/* Update Name Section */}
+        <div className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-8 shadow-sm">
+          <h2 className="text-lg font-bold text-gray-900">
+            নাম পরিবর্তন করুন
+          </h2>
 
-            <form onSubmit={handleUpdateName} className="mt-4">
+          <form onSubmit={handleUpdateName} className="mt-4 space-y-4">
+            <div>
               <label
                 htmlFor="newName"
-                className="mb-2 block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 mb-1"
               >
-                নাম
+                নতুন নাম
               </label>
 
               <input
@@ -122,34 +124,34 @@ const ProfilePage = () => {
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
                 placeholder={user?.name || "আপনার নাম লিখুন"}
-                className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-[#05893e] focus:ring-2 focus:ring-[#05893e]/20 sm:text-base"
+                className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-[#05893e] focus:ring-2 focus:ring-[#05893e]/20"
                 disabled={isUpdating}
                 maxLength={100}
                 required
               />
+            </div>
 
-              <button
-                type="submit"
-                disabled={isUpdating || !newName.trim()}
-                className="cursor-pointer mt-3 w-full rounded-lg bg-[#05893e] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#046f32] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+            <button
+              type="submit"
+              disabled={isUpdating || !newName.trim()}
+              className="cursor-pointer rounded-lg bg-[#05893e] hover:bg-[#046f32] px-6 py-3 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {isUpdating ? "সংরক্ষণ হচ্ছে..." : "পরিবর্তন সংরক্ষণ করুন"}
+            </button>
+
+            {message && (
+              <p
+                role="status"
+                className={`text-sm font-medium ${
+                  message.includes("সফলভাবে")
+                    ? "text-green-600"
+                    : "text-red-600"
+                }`}
               >
-                {isUpdating ? "সংরক্ষণ হচ্ছে..." : "নাম পরিবর্তন করুন"}
-              </button>
-
-              {message && (
-                <p
-                  role="status"
-                  className={`mt-3 text-sm  ${
-                    message.includes("সফলভাবে")
-                      ? "text-green-700"
-                      : "text-red-600"
-                  }`}
-                >
-                  {message}
-                </p>
-              )}
-            </form>
-          </div>
+                {message}
+              </p>
+            )}
+          </form>
         </div>
       </div>
     </div>
